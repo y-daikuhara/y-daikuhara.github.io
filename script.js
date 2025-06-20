@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素はHTMLから削除されたため、ここも削除
 
     // ★ここに、Google Apps ScriptのウェブアプリURLを貼り付けてください★
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbz_NCBQLPI3VC9EaVAQnmGpUnr6RWb4QBM7oafTn0lMQUWj0w7byHuquIpsG7L7xl6f/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbxpYsL13EUU36S09UZuhmiIYXkChI0q4nqFS0zgYVYj3VxoekxLuHY7kjg11BJeqMh_/exec"; 
 
     const selectedItems = {}; 
 
