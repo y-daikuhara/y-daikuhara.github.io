@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'item328', name: 'SAWGアイテム　A5　リングノート　緑' },
         { id: 'item329', name: 'SAWGアイテム　A5　リングノート　黄' },
         { id: 'item334', name: 'SWAGアイテム　ボールペン　ホワイト' },
-        { id: 'item552', name: '552 アクロボール3' },
+        { id: 'item552', name: 'アクロボール3' },
         { id: 'item564', name: 'Googleマスク' },
         { id: 'item801', name: 'Swag_リングノートA6　赤(New)' },
         { id: 'item802', name: 'Swag_リングノー-トA6　緑(New)' },
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素を取得
 
     // ★ここに、Google Apps ScriptのウェブアプリURLを貼り付けてください★
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbysTIcwIW0wRWm9v-ruCAZZWQ7O1WcYnuGuFuHZtArF2w7ucIC0rTORBaoghtOWOqwo/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbz6Xt5OX6PMz3qWVJiOHvH08kPWpUk9671DSpYubRxF6qhCcjz11_ZGo1fkuNjNSZLs/exec"; 
 
     // ユーザーが選択したノベルティとその数量を保存する場所
     const selectedItems = {}; 
