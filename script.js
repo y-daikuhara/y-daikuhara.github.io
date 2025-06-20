@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素を取得
 
     // ★ここに、Google Apps ScriptのウェブアプリURLを貼り付けてください★
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbz6Xt5OX6PMz3qWVJiOHvH08kPWpUk9671DSpYubRxF6qhCcjz11_ZGo1fkuNjNSZLs/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbwf5VJXL_2Yeh4TqLXKyCY4IUTxwG7rFkWa_f9Y0LQZn6i-axCOEa176QVihoXSeIfz/exec"; 
 
     // ユーザーが選択したノベルティとその数量を保存する場所
     const selectedItems = {}; 
