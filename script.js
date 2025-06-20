@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'item328', name: 'SAWGアイテム　A5　リングノート　緑' },
         { id: 'item329', name: 'SAWGアイテム　A5　リングノート　黄' },
         { id: 'item334', name: 'SWAGアイテム　ボールペン　ホワイト' },
-        { id: 'item552', name: 'アクロボール3' },
+        { id: 'item552', name: '552 アクロボール3' },
         { id: 'item564', name: 'Googleマスク' },
         { id: 'item801', name: 'Swag_リングノートA6　赤(New)' },
         { id: 'item802', name: 'Swag_リングノー-トA6　緑(New)' },
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'item1556', name: 'BOXティッシュ' }
     ];
 
-    // エリアの選択肢リスト
+    // 各ドロップダウンの選択肢リストを定義
     const areaOptions = [
         '--- 選択してください ---',
         '東日本① RSS',
@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         '事務局'
     ];
 
-    // 実施キャリアの選択肢リスト
     const carrierOptions = [
         '--- 選択してください ---',
         'KDDI',
@@ -76,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
         'その他'
     ];
 
-    // 種別の選択肢リストを追加
     const categoryOptions = [
         '--- 選択してください ---',
         'イベント',
@@ -84,7 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
         'その他'
     ];
 
-    // 希望備品の選択肢リストを追加
+    // 「希望備品」はHTMLに項目がないため、一旦コメントアウトまたは削除します。
+    // もし後で項目追加があれば、このリストも追加してください。
+    /*
     const desiredEquipmentOptions = [
         '--- 選択してください ---',
         'イベント什器',
@@ -93,25 +93,24 @@ document.addEventListener('DOMContentLoaded', function() {
         '衣類(ジャンバーなど貸し出し可能な場合は事前に相談すること)',
         'その他'
     ];
+    */
 
-
-    // HTMLの各部分とJavaScriptを連携させるための準備
+    // HTML要素の取得
     const noveltyListContainer = document.querySelector('.novelty-list-container');
     const selectedNoveltiesList = document.getElementById('selectedNoveltiesList');
     const totalItemsSpan = document.getElementById('totalItems');
     const noveltyOrderForm = document.getElementById('noveltyOrderForm');
     const areaSelect = document.getElementById('area');
     const carrierSelect = document.getElementById('carrier');
-    const categorySelect = document.getElementById('category'); // 種別のselect要素を取得
-    const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素を取得
+    const categorySelect = document.getElementById('category');
+    // const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素はHTMLから削除されたため、ここも削除
 
     // ★ここに、Google Apps ScriptのウェブアプリURLを貼り付けてください★
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbwf5VJXL_2Yeh4TqLXKyCY4IUTxwG7rFkWa_f9Y0LQZn6i-axCOEa176QVihoXSeIfz/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbz_NCBQLPI3VC9EaVAQnmGpUnr6RWb4QBM7oafTn0lMQUWj0w7byHuquIpsG7L7xl6f/exec"; 
 
-    // ユーザーが選択したノベルティとその数量を保存する場所
     const selectedItems = {}; 
 
-    // ノベルティのリスト（チェックボックスと数量入力欄）を自動で作る関数
+    // ノベルティリストの生成
     function createNoveltyItems() {
         noveltyData.forEach(novelty => { 
             const noveltyItemDiv = document.createElement('div');
@@ -175,9 +174,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // エリアの選択肢を生成する関数
-    function createAreaOptions() {
-        areaOptions.forEach(optionText => {
+    // ドロップダウン選択肢を生成するヘルパー関数
+    function populateSelectOptions(selectElement, optionsArray) {
+        optionsArray.forEach(optionText => {
             const option = document.createElement('option');
             option.value = optionText === '--- 選択してください ---' ? '' : optionText;
             option.textContent = optionText;
@@ -186,71 +185,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.selected = true;
                 option.hidden = true;
             }
-            areaSelect.appendChild(option);
+            selectElement.appendChild(option);
         });
     }
 
-    // 実施キャリアの選択肢を生成する関数
-    function createCarrierOptions() {
-        carrierOptions.forEach(optionText => {
-            const option = document.createElement('option');
-            option.value = optionText === '--- 選択してください ---' ? '' : optionText;
-            option.textContent = optionText;
-            if (optionText === '--- 選択してください ---') {
-                option.disabled = true;
-                option.selected = true;
-                option.hidden = true;
-            }
-            carrierSelect.appendChild(option);
-        });
-    }
+    // 各ドロップダウンの選択肢を生成する関数
+    function createAreaOptions() { populateSelectOptions(areaSelect, areaOptions); }
+    function createCarrierOptions() { populateSelectOptions(carrierSelect, carrierOptions); }
+    function createCategoryOptions() { populateSelectOptions(categorySelect, categoryOptions); }
+    // function createDesiredEquipmentOptions() { populateSelectOptions(desiredEquipmentSelect, desiredEquipmentOptions); } // 希望備品の関数も削除
 
-    // 種別の選択肢を生成する関数を新しく追加
-    function createCategoryOptions() {
-        categoryOptions.forEach(optionText => {
-            const option = document.createElement('option');
-            option.value = optionText === '--- 選択してください ---' ? '' : optionText;
-            option.textContent = optionText;
-            if (optionText === '--- 選択してください ---') {
-                option.disabled = true;
-                option.selected = true;
-                option.hidden = true;
-            }
-            categorySelect.appendChild(option);
-        });
-    }
-
-    // 希望備品の選択肢を生成する関数を新しく追加
-    function createDesiredEquipmentOptions() {
-        desiredEquipmentOptions.forEach(optionText => {
-            const option = document.createElement('option');
-            option.value = optionText === '--- 選択してください ---' ? '' : optionText;
-            option.textContent = optionText;
-            if (optionText === '--- 選択してください ---') {
-                option.disabled = true;
-                option.selected = true;
-                option.hidden = true;
-            }
-            desiredEquipmentSelect.appendChild(option);
-        });
-    }
-
-    // 合計の数量を計算して表示を更新する関数
+    // 合計数量の更新
     function updateSummary() {
         let totalItems = 0;
-
         for (const id in selectedItems) {
             const item = selectedItems[id];
             totalItems += item.quantity;
         }
-
         totalItemsSpan.textContent = totalItems;
     }
 
-    // 選択されたノベルティのリストを下のボックスに表示する関数
+    // 選択されたノベルティのリスト表示を更新
     function updateSelectedNoveltiesDisplay() {
         selectedNoveltiesList.innerHTML = '';
-
         for (const id in selectedItems) {
             const item = selectedItems[id];
             if (item.quantity > 0) {
@@ -261,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // フォームの「発注内容を確認」ボタンが押されたときの動作
+    // フォーム送信イベント
     noveltyOrderForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -274,12 +231,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const storeName = document.getElementById('storeName').value;
         const startDate = document.getElementById('startDate').value;
         const endDate = document.getElementById('endDate').value;
-        const category = document.getElementById('category').value; // 新しく追加
+        const category = document.getElementById('category').value;
         const background = document.getElementById('background').value;
         const requester = document.getElementById('requester').value;
         const salesTarget = document.getElementById('salesTarget').value;
         const itemDetails = document.getElementById('itemDetails').value;
-        const desiredEquipment = document.getElementById('desiredEquipment').value; // 新しく追加
+        // 希望備品はHTMLから削除されたため、ここも削除
+        // const desiredEquipment = document.getElementById('desiredEquipment').value; 
         const shippingZipCode = document.getElementById('shippingZipCode').value;
         const shippingAddress = document.getElementById('shippingAddress').value;
         const shippingContactPerson = document.getElementById('shippingContactPerson').value;
@@ -287,14 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const deliveryDate = document.getElementById('deliveryDate').value; 
         const otherNotes = document.getElementById('otherNotes').value;
 
-
-        // 必須項目のチェック (種別と希望備品も追加)
-        if (!area || !carrier || !name || !storeName || !startDate || !endDate || !category || !background || !requester || !shippingAddress || !shippingContactPerson || !shippingPhoneNumber || !deliveryDate || !desiredEquipment) {
-            alert('必須項目が入力されていません。ご確認ください。');
-            return; 
-        }
-
-        // ノベルティが選ばれているかチェック
+        // ノベルティが選ばれているかチェック（必須項目ではなくなりましたが、選ばれていないと詳細が空になるため）
         if (Object.keys(selectedItems).length === 0 || totalItemsSpan.textContent === '0') {
             alert('ノベルティを1つ以上選択し、数量を入力してください。');
             return;
@@ -302,20 +253,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // ノベルティ詳細をまとめて一つの文字列にする
         let orderDetailsText = '';
-        let hasSelectedNovelty = false;
         for (const id in selectedItems) {
             const item = selectedItems[id];
-            if (item.quantity > 0) {
+            // 数量が0でも含めるか、1以上のみ含めるか、用途に応じて調整
+            if (item.quantity > 0) { 
                 orderDetailsText += `${item.name}: ${item.quantity} 個\n`; 
-                hasSelectedNovelty = true;
             }
         }
+        // 全くノベルティが選ばれていない場合も、空の文字列として送信される
 
-        if (!hasSelectedNovelty) {
-             alert('ノベルティを1つ以上選択し、数量を入力してください。');
-             return;
-        }
-        
         // Google Apps Scriptに送るデータを用意
         const formDataToSend = new FormData();
         formDataToSend.append('area', area);
@@ -326,44 +272,44 @@ document.addEventListener('DOMContentLoaded', function() {
         formDataToSend.append('storeName', storeName);
         formDataToSend.append('startDate', startDate);
         formDataToSend.append('endDate', endDate);
-        formDataToSend.append('category', category); // 新しく追加
+        formDataToSend.append('category', category);
         formDataToSend.append('background', background);
         formDataToSend.append('requester', requester);
         formDataToSend.append('salesTarget', salesTarget);
         formDataToSend.append('itemDetails', itemDetails);
-        formDataToSend.append('desiredEquipment', desiredEquipment); // 新しく追加
+        // formDataToSend.append('desiredEquipment', desiredEquipment); // 希望備品はHTMLから削除されたため、ここも削除
         formDataToSend.append('shippingZipCode', shippingZipCode);
         formDataToSend.append('shippingAddress', shippingAddress);
         formDataToSend.append('shippingContactPerson', shippingContactPerson);
         formDataToSend.append('shippingPhoneNumber', shippingPhoneNumber);
         formDataToSend.append('deliveryDate', deliveryDate);
         formDataToSend.append('otherNotes', otherNotes);
-        formDataToSend.append('orderDetails', orderDetailsText);
+        formDataToSend.append('noveltyOrderDetails', orderDetailsText); // Googleフォームの項目名に合わせて変更
 
 
         // 確認ダイアログ
         let confirmationMessage = `--- 発注内容確認 ---\n`;
-        confirmationMessage += `エリア: ${area}\n`;
-        confirmationMessage += `実施キャリア: ${carrier}\n`;
-        confirmationMessage += `名前: ${name}\n`;
-        confirmationMessage += `一次代理店名: ${primaryAgency}\n`;
-        confirmationMessage += `二次代理店名: ${secondaryAgency}\n`;
-        confirmationMessage += `店舗名: ${storeName}\n`;
-        confirmationMessage += `実施期間（開始予定日〜）: ${startDate}\n`;
-        confirmationMessage += `実施期間（〜返却予定日）: ${endDate}\n`;
-        confirmationMessage += `種別: ${category}\n`; // 新しく追加
-        confirmationMessage += `実施背景: ${background}\n`;
-        confirmationMessage += `依頼者: ${requester}\n`;
-        confirmationMessage += `販売目標: ${salesTarget}\n`;
-        confirmationMessage += `端末の場合の機種名と希望数・衣類の種類のサイズと個数を記載: \n${itemDetails}\n`;
-        confirmationMessage += `希望備品（イベント什器、バナー、端末、など具体的に）: ${desiredEquipment}\n`; // 新しく追加
-        confirmationMessage += `発送先　郵便番号: ${shippingZipCode}\n`;
-        confirmationMessage += `発送先　住所: ${shippingAddress}\n`;
-        confirmationMessage += `発送先　担当者: ${shippingContactPerson}\n`;
-        confirmationMessage += `発送先　電話番号: ${shippingPhoneNumber}\n`;
-        confirmationMessage += `納期希望日: ${deliveryDate}\n`;
-        confirmationMessage += `その他: ${otherNotes}\n\n`;
-        confirmationMessage += `--- ノベルティ詳細 ---\n${orderDetailsText}\n`;
+        confirmationMessage += `エリア: ${area || '(未入力)'}\n`; // 未入力の場合は(未入力)と表示
+        confirmationMessage += `実施キャリア: ${carrier || '(未入力)'}\n`;
+        confirmationMessage += `名前: ${name || '(未入力)'}\n`;
+        confirmationMessage += `一次代理店名: ${primaryAgency || '(未入力)'}\n`;
+        confirmationMessage += `二次代理店名: ${secondaryAgency || '(未入力)'}\n`;
+        confirmationMessage += `店舗名: ${storeName || '(未入力)'}\n`;
+        confirmationMessage += `実施期間（開始予定日〜）: ${startDate || '(未入力)'}\n`;
+        confirmationMessage += `実施期間（〜返却予定日）: ${endDate || '(未入力)'}\n`;
+        confirmationMessage += `種別: ${category || '(未入力)'}\n`;
+        confirmationMessage += `実施背景: ${background || '(未入力)'}\n`;
+        confirmationMessage += `依頼者: ${requester || '(未入力)'}\n`;
+        confirmationMessage += `販売目標: ${salesTarget || '(未入力)'}\n`;
+        confirmationMessage += `端末の場合の機種名と希望数・衣類の種類のサイズと個数を記載: \n${itemDetails || '(未入力)'}\n`;
+        // confirmationMessage += `希望備品（イベント什器、バナー、端末、など具体的に）: ${desiredEquipment || '(未入力)'}\n`; // 希望備品はHTMLから削除されたため、ここも削除
+        confirmationMessage += `発送先　郵便番号: ${shippingZipCode || '(未入力)'}\n`;
+        confirmationMessage += `発送先　住所: ${shippingAddress || '(未入力)'}\n`;
+        confirmationMessage += `発送先　担当者: ${shippingContactPerson || '(未入力)'}\n`;
+        confirmationMessage += `発送先　電話番号: ${shippingPhoneNumber || '(未入力)'}\n`;
+        confirmationMessage += `納期希望日: ${deliveryDate || '(未入力)'}\n`;
+        confirmationMessage += `その他: ${otherNotes || '(未入力)'}\n\n`;
+        confirmationMessage += `--- ノベルティ詳細 ---\n${orderDetailsText || '(選択なし)'}\n`; // ノベルティが選択されていない場合も表示
         confirmationMessage += `合計選択ノベルティ数: ${totalItemsSpan.textContent}\n`;
         confirmationMessage += `--------------------\n`;
 
@@ -377,13 +323,15 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if (data.status === 'success') {
                     alert('発注が完了しました。ありがとうございます！');
+                    // フォームをリセット
                     noveltyOrderForm.reset();
                     // select要素も初期値に戻す
                     areaSelect.value = ''; 
                     carrierSelect.value = '';
-                    categorySelect.value = ''; // 新しく追加
-                    desiredEquipmentSelect.value = ''; // 新しく追加
+                    categorySelect.value = ''; 
+                    // desiredEquipmentSelect.value = ''; // 希望備品はHTMLから削除されたため、ここも削除
 
+                    // ノベルティ選択状態をクリア
                     for (const id in selectedItems) {
                         const checkbox = document.getElementById(id);
                         if (checkbox) checkbox.checked = false; 
@@ -414,6 +362,6 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSelectedNoveltiesDisplay();
     createAreaOptions(); 
     createCarrierOptions(); 
-    createCategoryOptions(); // 種別の選択肢生成関数を呼び出す
-    createDesiredEquipmentOptions(); // 希望備品の選択肢生成関数を呼び出す
+    createCategoryOptions(); 
+    // createDesiredEquipmentOptions(); // 希望備品の関数も削除
 });

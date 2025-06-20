@@ -28,18 +28,18 @@
             <section class="requester-info">
                 <h2>2. 発注者情報</h2>
                 <div class="form-group">
-                    <label for="area">エリア <span class="required">*</span></label>
-                    <select id="area" name="area" required>
+                    <label for="area">エリア</label>
+                    <select id="area" name="area">
                         </select>
                 </div>
                 <div class="form-group">
-                    <label for="carrier">実施キャリア（間違えないでください） <span class="required">*</span></label>
-                    <select id="carrier" name="carrier" required>
+                    <label for="carrier">実施キャリア（間違えないでください）</label>
+                    <select id="carrier" name="carrier">
                         </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">名前 <span class="required">*</span></label>
-                    <input type="text" id="name" name="name" required>
+                    <label for="name">名前</label>
+                    <input type="text" id="name" name="name">
                 </div>
                 <div class="form-group">
                     <label for="primaryAgency">一次代理店名（docomo量販はスペースだけ入れてください）</label>
@@ -50,29 +50,29 @@
                     <input type="text" id="secondaryAgency" name="secondaryAgency">
                 </div>
                 <div class="form-group">
-                    <label for="storeName">店舗名（Visitschedule記載の正式呼称）<span class="required">*</span> ※エラー時は発注できませんのでご注意ください</label>
-                    <input type="text" id="storeName" name="storeName" required>
+                    <label for="storeName">店舗名（Visitschedule記載の正式呼称）※エラー時は発注できませんのでご注意ください</label>
+                    <input type="text" id="storeName" name="storeName">
                 </div>
                 <div class="form-group">
-                    <label for="startDate">実施期間（開始予定日〜） <span class="required">*</span></label>
-                    <input type="date" id="startDate" name="startDate" required>
+                    <label for="startDate">実施期間（開始予定日〜）</label>
+                    <input type="date" id="startDate" name="startDate">
                 </div>
                 <div class="form-group">
-                    <label for="endDate">実施期間（〜返却予定日） <span class="required">*</span></label>
-                    <input type="date" id="endDate" name="endDate" required>
+                    <label for="endDate">実施期間（〜返却予定日）</label>
+                    <input type="date" id="endDate" name="endDate">
                 </div>
                 <div class="form-group">
-                    <label for="category">種別 <span class="required">*</span></label>
-                    <select id="category" name="category" required>
+                    <label for="category">種別</label>
+                    <select id="category" name="category">
                         </select>
                 </div>
                 <div class="form-group">
-                    <label for="background">実施背景（誰からの相談、依頼かを記入） <span class="required">*</span></label>
-                    <textarea id="background" name="background" rows="3" required></textarea>
+                    <label for="background">実施背景（誰からの相談、依頼かを記入）</label>
+                    <textarea id="background" name="background" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="requester">依頼者（依頼者の役職名＋氏名） <span class="required">*</span></label>
-                    <input type="text" id="requester" name="requester" required>
+                    <label for="requester">依頼者（依頼者の役職名＋氏名）</label>
+                    <input type="text" id="requester" name="requester">
                 </div>
                 <div class="form-group">
                     <label for="salesTarget">販売目標（期間中のPixel販売目標等）</label>
@@ -83,29 +83,24 @@
                     <textarea id="itemDetails" name="itemDetails" rows="5"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="desiredEquipment">希望備品（イベント什器、バナー、端末、など具体的に）※必ずしも希望に沿うものではありません。 <span class="required">*</span></label>
-                    <select id="desiredEquipment" name="desiredEquipment" required>
-                        </select>
-                </div>
-                <div class="form-group">
                     <label for="shippingZipCode">発送先　郵便番号（支店の場合は記載不要）</label>
                     <input type="text" id="shippingZipCode" name="shippingZipCode">
                 </div>
                 <div class="form-group">
-                    <label for="shippingAddress">発送先　住所（支店の場合はバックスグループの支店名を記載） <span class="required">*</span></label>
-                    <textarea id="shippingAddress" name="shippingAddress" rows="3" required></textarea>
+                    <label for="shippingAddress">発送先　住所（支店の場合はバックスグループの支店名を記載）</label>
+                    <textarea id="shippingAddress" name="shippingAddress" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="shippingContactPerson">発送先　担当者 <span class="required">*</span></label>
-                    <input type="text" id="shippingContactPerson" name="shippingContactPerson" required>
+                    <label for="shippingContactPerson">発送先　担当者</label>
+                    <input type="text" id="shippingContactPerson" name="shippingContactPerson">
                 </div>
                 <div class="form-group">
-                    <label for="shippingPhoneNumber">発送先　電話番号（半角数字でハイフンもつける） <span class="required">*</span></label>
-                    <input type="text" id="shippingPhoneNumber" name="shippingPhoneNumber" required placeholder="例: 090-1234-5678">
+                    <label for="shippingPhoneNumber">発送先　電話番号（半角数字でハイフンもつける）</label>
+                    <input type="text" id="shippingPhoneNumber" name="shippingPhoneNumber" placeholder="例: 090-1234-5678">
                 </div>
                 <div class="form-group">
-                    <label for="deliveryDate">納期希望日（余裕を持った希望日を設定すること） <span class="required">*</span></label>
-                    <input type="date" id="deliveryDate" name="deliveryDate" required>
+                    <label for="deliveryDate">納期希望日（余裕を持った希望日を設定すること）</label>
+                    <input type="date" id="deliveryDate" name="deliveryDate">
                 </div>
                 <div class="form-group">
                     <label for="otherNotes">その他</label>
