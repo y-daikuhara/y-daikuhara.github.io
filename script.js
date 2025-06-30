@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'item328', name: 'SAWGアイテム　A5　リングノート　緑' },
         { id: 'item329', name: 'SAWGアイテム　A5　リングノート　黄' },
         { id: 'item334', name: 'SWAGアイテム　ボールペン　ホワイト' },
-        { id: 'item552', name: '552 アクロボール3' },
+        { id: 'item552', name: 'アクロボール3' },
         { id: 'item564', name: 'Googleマスク' },
         { id: 'item801', name: 'Swag_リングノートA6　赤(New)' },
         { id: 'item802', name: 'Swag_リングノー-トA6　緑(New)' },
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // const desiredEquipmentSelect = document.getElementById('desiredEquipment'); // 希望備品のselect要素はHTMLから削除されたため、ここも削除
 
     // ★ここに、Google Apps ScriptのウェブアプリURLを貼り付けてください★
-    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/a/macros/g-backs.com/s/AKfycbxpYsL13EUU36S09UZuhmiIYXkChI0q4nqFS0zgYVYj3VxoekxLuHY7kjg11BJeqMh_/exec"; 
+    const GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzkpZhQwSzsuBfE6vgIC6uDowCYn4QlxcjqhqK2xO26_k-fyzL9dnCcmqhdgXcOfcWm2Q/exec"; 
 
     const selectedItems = {}; 
 
